@@ -123,7 +123,7 @@ const colors = ["#e76f51", "#f4a261", "#e9c46a", "#2a9d8f", "#264653"];
 const backColor = document.querySelector("body");
 let clicks = -1;
 changeBtn.addEventListener('click', () => {
-    if(clicks < colors.length) {
+    if(clicks < colors.length-1) {
         clicks ++;
     } else {
         clicks = 0;
