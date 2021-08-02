@@ -39,44 +39,47 @@ greenBtn.addEventListener('click', () => {
 })
 
 //Form
-const formEvent = document.querySelector("form")
-formEvent.addEventListener('submit', (event) => {
+
+const emailField = document.getElementById("exampleInputEmail1")
+const nameField = document.getElementById("example-text-input")
+const describe = document.getElementById("exampleTextarea")
+
+const checkUserInput = (event) => {
     event.preventDefault()
-
-    const emailField = document.getElementById("exampleInputEmail1")
-    const nameField = document.getElementById("example-text-input")
-    const describe = document.getElementById("exampleTextarea")
-
-    console.log(emailField.value)
-    console.log(nameField.value)
-    console.log(describe.value)
-
     let isMailValid = emailField.value.trim().includes("@")
-    let isNameValid = nameField.length.value.trim() > 0
-    let isDescriptionValid = describe.length.value.trim() > 0
+    let isNameValid = nameField.value.trim().length > 0
+    let isDescriptionValid = describe.value.trim().length > 0
 
     if(isMailValid && isNameValid && isDescriptionValid) {
         emailField.value = ""
         nameField.value = ""
         describe.value = ""
 
-        emailField.style.backgroundColor = "#fff"
-        nameField.style.backgroundColor = "#fff"
-        describe.style.backgroundColor = "#fff"
+        emailField.classList.remove("redBackground")
+        emailField.classList.add("whiteBackground")
+        nameField.classList.remove("redBackground")
+        nameField.classList.add("whiteBackground")
+        describe.classList.remove("redBackground")
+        describe.classList.add("whiteBackground")
         
         alert("Thank you for feeling the form!")
     
-
     } else {
 
         if(!isMailValid) {
-        emailField.style.backgroundColor = "tomato"
+            emailField.classList.remove("whiteBackground")
+            emailField.classList.add("redBackground")
          }   
         if(!isNameValid) {
-            nameField.style.backgroundColor = "tomato"
+            nameField.classList.remove("whiteBackground")
+            nameField.classList.add("redBackground")
          }
         if(!isDescriptionValid) {
-            describe.style.backgroundColor = "tomato"
+            describe.classList.remove("whiteBackground")
+            describe.classList.add("redBackground")
         }
     }    
-})
+}
+
+const formEvent = document.querySelector("form")
+formEvent.addEventListener('submit', checkUserInput)
