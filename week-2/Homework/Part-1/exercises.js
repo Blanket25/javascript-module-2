@@ -15,6 +15,17 @@
  */
 function exerciseOne(arrayOfPeople) {
   let content = document.querySelector("#content");
+  let personName;
+  let personJob;
+  for(let i = 0; i < arrayOfPeople.length; i ++) {
+    personName = document.createElement("h1");
+    personName.textContent = arrayOfPeople[i].name
+    content.appendChild(personName)
+    personJob = document.createElement("h2");
+    personJob.textContent = arrayOfPeople[i].job
+    content.appendChild(personJob)
+ }
+ return personName + personJob
 }
 
 /**
@@ -26,6 +37,15 @@ function exerciseOne(arrayOfPeople) {
  */
 function exerciseTwo(shopping) {
   //Write your code in here
+  let content = document.querySelector("#content");
+  let shopList = document.createElement("ul");
+  shopping.forEach(item => {
+    let listItem = document.createElement("li")
+    listItem.textContent = item
+    shopList.appendChild(listItem)
+  })
+  content.appendChild(shopList)
+  return shopList
 }
 
 /**
@@ -59,6 +79,32 @@ function exerciseTwo(shopping) {
 **/
 function exerciseThree(books) {
   //Write your code in here
+  let list = document.createElement("ul");
+  list.classList.add("book-cards")
+  books.forEach(book => {
+    let aBook = document.createElement("p")
+    aBook.textContent = book.title + " - " + book.author
+
+    let listItem = document.createElement("li");
+    listItem.classList.add("book-card")
+    listItem.appendChild(aBook)
+    list.appendChild(listItem)
+    document.body.appendChild(list)
+
+    let bookImg = document.createElement("img")
+    bookImg.classList.add("book-img")
+    bookImg.src = book.bookCover;
+    
+    
+    listItem.appendChild(bookImg)
+    
+
+    if(book.alreadyRead === true) {
+      listItem.style.backgroundColor = "green"
+    } else {
+      listItem.style.backgroundColor = "tomato"
+    }
+  });
 }
 
 //
@@ -87,17 +133,20 @@ const books = [
   {
     title: "The Design of Everyday Things",
     author: "Don Norman",
-    alreadyRead: false
+    alreadyRead: false,
+    bookCover: "https://images-na.ssl-images-amazon.com/images/I/81zpLhP1gWL.jpg"
   },
   {
     title: "The Most Human Human",
     author: "Brian Christian",
-    alreadyRead: true
+    alreadyRead: true,
+    bookCover: "https://images-na.ssl-images-amazon.com/images/I/71HMyqG6MRL.jpg"
   },
   {
     title: "The Pragmatic Programmer",
     author: "Andrew Hunt",
-    alreadyRead: true
+    alreadyRead: true,
+    bookCover: "https://images-na.ssl-images-amazon.com/images/I/41as+WafrFL.jpg"
   }
 ];
 

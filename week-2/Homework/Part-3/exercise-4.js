@@ -58,14 +58,28 @@ let restaurant1 = {
     applicationName: "Restaurant Finder",
     applicationVersion: "1.0",
     restaurants: restaurants,
+
+    //takes a number of people in parameter and returns all the restaurant names which have 
+    //the required number of seats available at the moment.
     findAvailableRestaurants: function (numberOfPeople) {
-      // Complete here
+      let pickedrestaurants = [];
+      for(let i = 0; i < restaurants.length; i ++) {
+        let availableSits = restaurants[i].totalSeats - restaurants[i].numberOfCustomers;
+        if(availableSits >= numberOfPeople) {
+          pickedrestaurants.push(restaurants[i].name)
+        }
+      }
+      return pickedrestaurants
     },
+
+    //takes a dish name in parameter and returns all the restaurant names serving this dish.
     findRestaurantServingDish: function (dishName) {
-      // Complete here
+      return restaurants.filter(restaurant => restaurant.menu.includes(dishName)).map(restaurant => restaurant.name)
     },
+
+    //takes an area of Glasgow in parameter (center, west), and returns the number of restaurants in this area.
     countNumberOfRestaurantsInArea: function (area) {
-      // Complete here
+      return restaurants.filter(restaurant => restaurant.address.area === area).length
     },
   };
   

@@ -39,12 +39,16 @@ DO NOT EDIT ANYTHING ABOVE THIS LINE
 WRITE YOUR CODE BELOW
 */
 
+//1) Filter the travelDestinations array to return all destination names reachable within 500 kms.
+let destinationNamesWithin500Kms = travelDestinations.filter(destinationObj => destinationObj.distanceKms < 500).map(destinationObj => destinationObj.destinationName)
 
-let destinationNamesWithin500Kms = // Complete here
 
-let destinationNameReachableByFerry = // Complete here
+//2) Find a destination name reachable by ferry.
+let destinationNameReachableByFerry = travelDestinations.filter(destinationObj => destinationObj.transportations.includes("ferry")).map(destinationObj => destinationObj.destinationName)
 
-let destinationNamesMoreThan300KmsAwayByTrain = // Complete here (PRINT THE RESULT IN THE CONSOLE USING FOREACH)
+//3) Print in the console all the destination names more than 300 kms far away and reachable by train.
+let destinationNamesMoreThan300KmsAwayByTrain = travelDestinations.filter(destinationObj => destinationObj.distanceKms > 300 && destinationObj.transportations.includes("train")).map(destinationObj => destinationObj.destinationName)
+      
 
 
 /*

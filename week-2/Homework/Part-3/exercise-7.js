@@ -41,24 +41,63 @@ var product2 = {
   price: 9.99,
   stock: 2
 };
+var product3 = {
+  id: 3,
+  name: "Microwave",
+  price: 15.99,
+  stock: 8
+};
+var product4 = {
+  id: 4,
+  name: "Shower Radio",
+  price: 6.99,
+  stock: 28
+};
 
 products.push(product1);
 products.push(product2);
+products.push(product3);
+products.push(product4);
 
 var shoppingCart = {
   totalPrice: 0,
   selectedProducts: []
 };
 
+//3. Create a function addToShoppingCart to add a product to the shopping cart list giving the product id,
+//the function will add the product to the selectedProduct list, and add the price to the totalPrice
 function addToShoppingCart(id){
-
+  for(let i = 0; i < products.length; i ++) {
+    if(id === products[i].id) {
+      shoppingCart.selectedProducts.push(products[i].name)
+      shoppingCart.totalPrice += products[i].price;
+    }
+  }
+  return (shoppingCart.selectedProducts, shoppingCart.totalPrice)
 }
 
+//4. Create the function removeFrom ShoppingCart to remove a product that a client does not like anymore
 function removeFromShoppingCart(id){
-
+  for(let i = 0; i < products.length; i ++) {
+    if(id === products[i].id) {
+      let indexOfProd = products.indexOf(products[i])
+      products.splice(indexOfProd, 1)
+    }
+  }
 }
 
+//5. Create the function shop, the function will empty the list and set 0 in the totalPrice of the shopping cart
+//In addition will substract 1 in the product stock of bought products
 function shop(){
+//empty the list
+let i= 0;
+while(shoppingCart.selectedProducts.length >= 0) {
+shoppingCart.selectedProducts.pop()
+i ++;
+}
+//set 0 in the totalPrice of the shopping cart
+shoppingCart.totalPrice = 0;
+//substract 1 in the product stock of bought products
 
 }
 
