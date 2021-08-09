@@ -67,37 +67,41 @@ var shoppingCart = {
 //3. Create a function addToShoppingCart to add a product to the shopping cart list giving the product id,
 //the function will add the product to the selectedProduct list, and add the price to the totalPrice
 function addToShoppingCart(id){
-  for(let i = 0; i < products.length; i ++) {
-    if(id === products[i].id) {
-      shoppingCart.selectedProducts.push(products[i].name)
-      shoppingCart.totalPrice += products[i].price;
+  products.forEach(product => {
+    if(id === product.id) {
+      shoppingCart.selectedProducts.push(product)
+      shoppingCart.totalPrice += product.price;
     }
-  }
-  return (shoppingCart.selectedProducts, shoppingCart.totalPrice)
+  })
 }
 
 //4. Create the function removeFrom ShoppingCart to remove a product that a client does not like anymore
 function removeFromShoppingCart(id){
-  for(let i = 0; i < products.length; i ++) {
-    if(id === products[i].id) {
-      let indexOfProd = products.indexOf(products[i])
-      products.splice(indexOfProd, 1)
+  products.forEach(product => {
+    if(id === product.id) {
+      let indexOfProd = shoppingCart.selectedProducts.indexOf(product)
+      shoppingCart.selectedProducts.splice(indexOfProd, 1)
+      shoppingCart.totalPrice -= product.price;
     }
-  }
+  })
 }
 
 //5. Create the function shop, the function will empty the list and set 0 in the totalPrice of the shopping cart
 //In addition will substract 1 in the product stock of bought products
 function shop(){
+//substract 1 in the product stock of bought products
+products.forEach(product => {
+  if(shoppingCart.selectedProducts.includes(product)) {
+    product.stock --;
+  }
+})
 //empty the list
-let i= 0;
-while(shoppingCart.selectedProducts.length >= 0) {
-shoppingCart.selectedProducts.pop()
-i ++;
+if(shoppingCart.selectedProducts.length > 0) {
+shoppingCart.selectedProducts = [];
 }
 //set 0 in the totalPrice of the shopping cart
 shoppingCart.totalPrice = 0;
-//substract 1 in the product stock of bought products
+
 
 }
 
