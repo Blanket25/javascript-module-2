@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Slideshow</title>
-    <script src="slideshow.js"></script>
+    
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -12,6 +12,25 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- Write your HTML in here -->
+
+    <div id="img-container">
+      <h1>If life gives you lemons, make lemonade</h1>
+      <img id="img-element" src="https://images.unsplash.com/photo-1610833805553-43556a0f821d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=348&q=80" alt="">
+      <p>If your finger is tired, press <strong><<</strong> or <strong>>></strong> to enjoy the slide show.</p>
+      <p>Choose how fast you'd like the show to go:</p>
+      <div>
+      <input id="sec-input" type="number" placeholder="Enter seconds">
+      <button id="enter-btn">Enter</button>
+      </div>
+      <div>
+        <button id="auto-back-btn"><<</button>
+        <button id="prev-btn"><</button>
+        <button id="stop-btn">stop</button>
+        <button id="next-btn">></button>
+        <button id="auto-forward-btn">>></button>
+      </div>
+    </div>
+
+  <script src="slideshow.js"></script>
   </body>
 </html>
