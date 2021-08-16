@@ -45,6 +45,7 @@ const autoForwardBtn = document.getElementById("auto-forward-btn")
 let setIntFunc;
 
 autoForwardBtn.addEventListener('click', () => {
+    clearInterval(setIntFunc) 
     setIntFunc = setInterval(() => {
         i ++;
       if(i > arrayOfLemons.length-1) {
@@ -56,6 +57,7 @@ autoForwardBtn.addEventListener('click', () => {
 })
 
 autoBackBtn.addEventListener('click', () => {
+    clearInterval(setIntFunc) 
     setIntFunc = setInterval(() => {
     i --;
     if (i < 0) {

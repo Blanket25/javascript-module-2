@@ -58,55 +58,125 @@ var movies = [
   },
 ];
 
-setTimeout(showMovies() , 1000);
-
-function showMovies() {
-  movies.forEach(movie => {
-      const movieP = document.createElement("p");
-      movieP.textContent = movie.title + " - " + movie.director;
-      const movieDiv = document.getElementById("all-movies");
-      movieDiv.appendChild(movieP)
-      let movieSpan = document.getElementById("movies-number")
-      movieSpan.innerText = movies.length;
-  })
+var movieCounter = 0;
+​
+const allMoviesEl = document.getElementById("all-movies")
+const moviesCountEl = document.getElementById("movies-number")
+​
+// create showMovies function
+function showMovies(movies) {
+  if (!Array.isArray(movies)) return
+​
+  movies.forEach(movie => addMovie(movie))
 }
-
-const myMovie = {
-  title: "Cinema Paradiso",
-  director: "Giuseppe Tornatore",
-  type: "drama",
-  haveWatched: true
+// showMovies(movies)
+​
+​
+// create a new movie object for your favorite movie
+const favMovie =  {
+  title: "Chinatown",
+  director: "Roman Polanski",
+  type: "thriller/neo-noir",
+  haveWatched: true,
 }
-
-setTimeout(addMovie(myMovie), 2000)
-
+​
+// create addMovies function
 function addMovie(movie) {
-  movies.push(movie) 
+  const pEl = document.createElement("p");
+  const { title, director } =  movie
+  pEl.textContent = `${title}, directed by ${director}`
+​
+  allMoviesEl.appendChild(pEl)
+​
+  moviesCountEl.textContent = ++movieCounter;
+}
+​
+setTimeout(() => showMovies(movies), 1000)
+setTimeout(() => addMovie(favMovie), 2000)
+​
+// Form
+const formEl = document.createElement("form")
+allMoviesEl.before(formEl)
+​
+const sampleMovie = movies[0]
+Object.keys(sampleMovie).forEach(key => {
+  const inputEL = document.createElement("input")
+  inputEL.setAttribute("id", `${key}`)
+  inputEL.placeholder = key
+  formEl.appendChild(inputEL)
+})
+const submitButton = document.createElement("button")
+submitButton.textContent = "Save"
+formEl.appendChild(submitButton)
+formEl.addEventListener("submit", onSave)
+​
+function onSave(ev) {
+  ev.preventDefault()
+​
+  const newMovie = {}
+​
+  // console.log(ev.target.elements)
+​
+  Object.keys(sampleMovie).forEach(key => {
+    newMovie[key] = ev.target.elements[key].value
+  })
+​
+  addMovie(newMovie)
+​
+  // console.log("new one: ", newMovie)
 }
 
-const movieForm = document.getElementById("movieForm");
+// setTimeout(showMovies() , 1000);
 
-movieForm.addEventListener('submit', (e) => {
-  e.preventDefault()
-  const movieTitle = document.getElementById("movieTitle");
-  const movieDirector = document.getElementById("movieDirector");
-  const movieType = document.getElementById("movieType");
-  const movieSeen = document.getElementById("movieSeen");
+// function showMovies() {
+//   movies.forEach(movie => {
+//       const movieP = document.createElement("p");
+//       movieP.textContent = movie.title + " - " + movie.director;
+//       const movieDiv = document.getElementById("all-movies");
+//       movieDiv.appendChild(movieP)
+//       let movieSpan = document.getElementById("movies-number")
+//       movieSpan.innerText = movies.length;
+//   })
+// }
+
+// const myMovie = {
+//   title: "Cinema Paradiso",
+//   director: "Giuseppe Tornatore",
+//   type: "drama",
+//   haveWatched: true
+// }
+
+// setTimeout(addMovie(myMovie), 2000)
+
+// function addMovie(movie) {
+//   movies.push(movie)
+//   showMovies() 
+// }
+
+// const movieForm = document.getElementById("movieForm");
+
+// movieForm.addEventListener('submit', (e) => {
+//   e.preventDefault()
+//   const movieTitle = document.getElementById("movieTitle");
+//   const movieDirector = document.getElementById("movieDirector");
+//   const movieType = document.getElementById("movieType");
+//   const movieSeen = document.getElementById("movieSeen");
   
-let newMovie = {
-    title: movieTitle.value,
-    director: movieDirector.value,
-    type: movieType.value,
-    haveWatched: movieSeen.value
-  }
+// let newMovie = {
+//     title: movieTitle.value,
+//     director: movieDirector.value,
+//     type: movieType.value,
+//     haveWatched: movieSeen.value
+//   }
 
-addMovie(newMovie)  
+// addMovie(newMovie)  
+// showMovies()
 
-movieTitle.value = "";
-movieDirector.value = "";
-movieType.value = "";
-movieSeen.value = "";
+// movieTitle.value = "";
+// movieDirector.value = "";
+// movieType.value = "";
+// movieSeen.value = "";
 
 
-})
+// })
 
